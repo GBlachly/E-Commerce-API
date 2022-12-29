@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const morgan = require('morgan'); 
 
 const PORT = process.env.port || 4001;
 
@@ -9,7 +10,8 @@ const productsRouter = require('./routers/productsRouter.js');
 const ordersRouter = require('./routers/ordersRouter.js');
 const cartsRouter = require('./routers/cartsRouter.js');
 
-
+app.use(morgan('dev'));
+app.use(bodyParser.json());
 
 app.use('/users', usersRouter);
 app.use('/products', productsRouter);
