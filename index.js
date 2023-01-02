@@ -18,6 +18,12 @@ app.use('/products', productsRouter);
 app.use('/orders', ordersRouter);
 app.use('/carts', cartsRouter);
 
+app.use((err, req, res, next) => {
+  const status = err.status || 500;
+  const message = err.message || 'Error Occured';
+  res.status(status).send(message);
+});
+
 
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);
