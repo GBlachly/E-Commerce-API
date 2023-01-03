@@ -7,7 +7,7 @@ const db = require('../db/db');
 
 /* get order by order Id */
 ordersRouter.get('/id/:orderId', (req, res, next) => {
-    let orderId = Number(req.params.orderId);
+    const orderId = Number(req.params.orderId);
 
     db.query('SELECT * FROM orders WHERE id = $1', [orderId], (err, result) => {
         if (err) {
@@ -16,6 +16,7 @@ ordersRouter.get('/id/:orderId', (req, res, next) => {
         res.status(200).send(result.rows[0]);
     });
 });
+
 
 /* get all orders by user Id (happens upon login/authentication needed) */
 ordersRouter.get('/user/:userId', (req, res, next) => {
@@ -29,9 +30,12 @@ ordersRouter.get('/user/:userId', (req, res, next) => {
     })
 });
 
+
 /* create new order (should come from what is in the user's cart/ users cart should be deleted once order is placed) */
 
+
 /* update order (admin only, maybe allow user to update shipping address or something like that) */
+
 
 /* delete order (admin only) */
 

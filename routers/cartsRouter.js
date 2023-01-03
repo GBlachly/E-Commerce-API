@@ -7,6 +7,7 @@ const db = require('../db/db');
 
 /* create users cart (should be created at the same time that the users account is created/ starts off empty) */
 
+
 /* get users cart by user id (authentication needed/ happens upon login) */
 cartsRouter.get('/:userId', (req, res, next) => {
     const userId = Number(req.params.userId);
@@ -19,10 +20,15 @@ cartsRouter.get('/:userId', (req, res, next) => {
     })
 });
 
+
 /* update user cart (happens when user adds or deletes product from cart) */
+
 
 /* alter/empty user cart (happens when order is placed/ may need to make placing order and emptying cart use the same path) */
 
+
 /* delete user cart (happens when user deleted their account) */
+
+
 
 module.exports = cartsRouter;
