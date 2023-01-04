@@ -12,7 +12,7 @@ const getAllProducts = (req, res, next) => {
 };
 
 
-const getProductByID = (req, res, next) => {
+const getProductById = (req, res, next) => {
     const productId = Number(req.params.productId);
     
     db.query('SELECT * FROM products WHERE id = $1;', [productId], (err, result) => {
@@ -66,7 +66,7 @@ const deleteProduct = (req, res, next) => {
 
 module.exports = {
     getAllProducts,
-    getProductByID,
+    getProductById,
     createProduct, 
     updateProduct,
     deleteProduct

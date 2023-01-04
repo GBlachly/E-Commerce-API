@@ -1,0 +1,10 @@
+// Example for create order request
+{
+    "userId": 2345, 
+    "totalPrice": 314.99, 
+    "items": [
+        {"productId": 1, "quantity": 4}, 
+        {"productId": 2, "quantity": 5}, 
+        {"productId": 3, "quantity": 6}
+    ]
+};

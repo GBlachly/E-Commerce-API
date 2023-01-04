@@ -1,37 +1,25 @@
 const express = require('express');
 const ordersRouter = express.Router();
 
-const db = require('../db/db');
+const {
+    getOrderById,
+    getOrdersByUserId,
+    createOrder,
+} = require('../models/ordersModel');
+
 
 // ROUTES
 
 /* get order by order Id */
-ordersRouter.get('/id/:orderId', (req, res, next) => {
-    const orderId = Number(req.params.orderId);
-
-    db.query('SELECT * FROM orders WHERE id = $1', [orderId], (err, result) => {
-        if (err) {
-            return next(err)
-        }
-        res.status(200).send(result.rows[0]);
-    });
-});
+ordersRouter.get('/id/:orderId', getOrderById);
 
 
 /* get all orders by user Id (happens upon login/authentication needed) */
-ordersRouter.get('/user/:userId', (req, res, next) => {
-    const userId = Number(req.params.userId);
-
-    db.query('SELECT * FROM orders WHERE user_id = $1;', [userId], (err, result) => {
-        if (err) {
-            return next(err)
-        }
-        res.status(200).send(result.rows)
-    })
-});
+ordersRouter.get('/user/:userId', getOrdersByUserId);
 
 
 /* create new order (should come from what is in the user's cart/ users cart should be deleted once order is placed) */
+ordersRouter.post('/', createOrder);
 
 
 /* update order (admin only, maybe allow user to update shipping address or something like that) */
