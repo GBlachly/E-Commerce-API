@@ -14,11 +14,11 @@ const {
 ordersRouter.get('/id/:orderId', getOrderById);
 
 
-/* get all orders by user Id (happens upon login/authentication needed) */
+/* get all orders by user Id */
 ordersRouter.get('/user/:userId', getOrdersByUserId);
 
 
-/* create new order (should come from what is in the user's cart/ users cart should be deleted once order is placed) */
+/* create new order (should come from what is in the user's cart/ users cart should be emptied once order is placed) */
 ordersRouter.post('/', createOrder);
 
 

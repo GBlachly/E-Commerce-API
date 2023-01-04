@@ -24,6 +24,7 @@ const getProductById = (req, res, next) => {
 };
 
 
+// (admin use/ not needed for a user based api)
 const createProduct = (req, res, next) => {
     const { name, price, stock } = req.body;
 
@@ -37,6 +38,7 @@ const createProduct = (req, res, next) => {
 };
 
 
+// (only stock should when order is placed/ otherwise admin use/ not needed for a user based api)
 const updateProduct = (req, res, next) => {
     const productId = Number(req.params.productId);
     const { name, price, stock } = req.body;
@@ -51,6 +53,7 @@ const updateProduct = (req, res, next) => {
 };
 
 
+// (admin use/ not needed for a user based api)
 const deleteProduct = (req, res, next) => {
     const productId = Number(req.params.productId);
 

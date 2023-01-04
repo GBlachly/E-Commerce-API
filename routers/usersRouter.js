@@ -5,16 +5,16 @@ const db = require('../db/db');
 
 // ROUTES 
 
-/* get user (need to verify that username and password are correct/ authenticate user) */
+/* get user  */
 
 
-/* create new user */
+/* create new user (authentication of user not needed) */
 
 
-/* update user information (authentication needed) */
+/* update user information  */
 
 
-/* delete user account (authentication needed) */
+/* delete user account  */
 
 
 
