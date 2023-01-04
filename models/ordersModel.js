@@ -31,12 +31,17 @@ const createOrder = async (req, res, next) => {
     const { items } = req.body;
     
     try {
-        const result = await db.queryNoCB('INSERT INTO orders (user_id, total_price) VALUES ($1, $2) RETURNING *', [userId, totalPrice]);
+        const statement1 = `INSERT INTO orders (user_id, total_price) 
+                            VALUES ($1, $2) 
+                            RETURNING *`
+        const result = await db.queryNoCB(statement1, [userId, totalPrice]);
         const orderId = result.rows[0].id;
         
-        /* HERE WE WANT TO ADD THE PRODUCTS AND THEIR QUANTITIES TO THE orders_products/ordered_items TABLE USING THE RETURNED ORDERID */
-        await items.forEach((item) => {
-           db.queryNoCB('INSERT INTO orders_products (order_id, product_id, quantity) VALUES ($1, $2, $3)', [orderId, item.productId, item.quantity]);
+        /* HERE WE WANT TO ADD THE PRODUCTS AND THEIR QUANTITIES TO THE orders_products/ordered_items TABLE USING THE RETURNED orderID */
+        const statement2 = `INSERT INTO orders_products (order_id, product_id, quantity) 
+                            VALUES ($1, $2, $3)`
+        items.forEach((item) => {
+           db.queryNoCB(statement2, [orderId, item.productId, item.quantity]);
         }); 
 
         res.status(201).send(`Order ID is ${orderId}`);

@@ -14,7 +14,7 @@ const {
 /* get all products */
 productsRouter.get('/', getAllProducts);
 
-/* get product by id */
+/* get product by id (may want to add a route to get product by name) */
 productsRouter.get('/:productId', getProductById);
 
 /* create new product (admin only) */
