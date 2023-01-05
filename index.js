@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const morgan = require('morgan'); 
 
@@ -10,6 +11,7 @@ const productsRouter = require('./routers/productsRouter.js');
 const ordersRouter = require('./routers/ordersRouter.js');
 const cartsRouter = require('./routers/cartsRouter.js');
 
+app.use(cors()); 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 
