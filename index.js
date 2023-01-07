@@ -1,3 +1,4 @@
+//REQUIRES
 const express = require('express');
 const app = express();
 const session = require('express-session');
@@ -19,6 +20,8 @@ const productsRouter = require('./routers/productsRouter.js');
 const ordersRouter = require('./routers/ordersRouter.js');
 const cartsRouter = require('./routers/cartsRouter.js');
 
+
+//SERVER USES
 app.use(
   session({
     secret: "RandomString1234", //this random string should be stored securely in an environment variable
