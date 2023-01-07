@@ -8,6 +8,7 @@ during development, NOT during production due to security risks. */
 
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+const bcrypt = require('bcrypt');
 
 const cors = require('cors');
 const bodyParser = require('body-parser');
