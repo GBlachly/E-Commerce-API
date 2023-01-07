@@ -1,5 +1,9 @@
 const express = require('express');
 const app = express();
+const session = require('express-session');
+const store = new session.MemoryStore();
+/* Note: Storing in-memory sessions is something that should be done only 
+during development, NOT during production due to security risks. */
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const morgan = require('morgan'); 
@@ -11,7 +15,17 @@ const productsRouter = require('./routers/productsRouter.js');
 const ordersRouter = require('./routers/ordersRouter.js');
 const cartsRouter = require('./routers/cartsRouter.js');
 
-app.use(cors()); 
+app.use(
+  session({
+    secret: "RandomString1234", //this random string should be stored securely in an environment variable
+    cookie: { maxAge: 1000 * 60 *60 * 24, secure: true, sameSite: "none" },
+    resave: false,
+    saveUninitialized: false,
+    store
+  })
+);
+
+app.use(cors()); //Not sure where this goes exactly or if i actually need it 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 
