@@ -1,6 +1,11 @@
 //REQUIRES
 const express = require('express');
 const app = express();
+
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const morgan = require('morgan'); 
+
 const session = require('express-session');
 const store = new session.MemoryStore();
 /* Note: Storing in-memory sessions is something that should be done only 
@@ -9,10 +14,6 @@ during development, NOT during production due to security risks. */
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require('bcrypt');
-
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const morgan = require('morgan'); 
 
 const PORT = process.env.port || 4001;
 
@@ -23,6 +24,10 @@ const cartsRouter = require('./routers/cartsRouter.js');
 
 
 //SERVER USES
+app.use(cors()); //Not sure where this goes exactly or if i actually need it 
+app.use(morgan('dev'));
+app.use(bodyParser.json());
+
 app.use(
   session({
     secret: "RandomString1234", //this random string should be stored securely in an environment variable
@@ -35,10 +40,7 @@ app.use(
 
 app.use(passport.initialize()); // notes 4.7 pg. 78
 app.use(passport.session());
-
-app.use(cors()); //Not sure where this goes exactly or if i actually need it 
-app.use(morgan('dev'));
-app.use(bodyParser.json());
+//passport.use();
 
 app.use('/users', usersRouter);
 app.use('/products', productsRouter);
