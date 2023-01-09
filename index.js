@@ -1,4 +1,4 @@
-//REQUIRES
+// REQUIRES
 const express = require('express');
 const app = express();
 
@@ -13,6 +13,7 @@ during development, NOT during production due to security risks. */
 
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+const db = require('./db/db');
 const bcrypt = require('bcrypt');
 
 const PORT = process.env.port || 4001;
@@ -23,7 +24,7 @@ const ordersRouter = require('./routers/ordersRouter.js');
 const cartsRouter = require('./routers/cartsRouter.js');
 
 
-//SERVER USES
+// USES/SESSION
 app.use(cors()); //Not sure where this goes exactly or if i actually need it 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
@@ -38,10 +39,43 @@ app.use(
   })
 );
 
+// PASSPORT
 app.use(passport.initialize()); // notes 4.7 pg. 78
 app.use(passport.session());
-//passport.use();
 
+passport.use(new LocalStrategy(
+  function (username, password, done) {
+    db.query('SELECT * FROM users WHERE username = $1;', [username], (err, result) => {
+      
+      const user = result.rows[0];
+      
+      if (err) return done(err);
+      if (!user) return done(null, false);
+      if (user.password != password) return done(null, false);
+      return done(null, user);
+    });
+
+  })
+);
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, done) => {
+  db.query('SELECT * FROM users WHERE id = $1;', [id], (err, result) => {
+    if (err) {
+      return next(err);
+    }
+
+    const user = result.rows[0];
+    done(null, user);
+    
+  })
+});
+
+
+// ROUTES
 app.use('/users', usersRouter);
 app.use('/products', productsRouter);
 app.use('/orders', ordersRouter);
