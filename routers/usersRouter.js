@@ -1,7 +1,9 @@
 const express = require('express');
 const usersRouter = express.Router();
 
-const db = require('../db/db');
+const {
+    registerUser
+} = require('../models/usersModel');
 
 // ROUTES 
 
@@ -9,7 +11,7 @@ const db = require('../db/db');
 
 
 /* create new user (authentication of user not needed) */
-usersRouter.post('/register', );
+usersRouter.post('/register', registerUser);
 
 /* update user information  */
 

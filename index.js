@@ -39,6 +39,7 @@ app.use(
   })
 );
 
+
 // PASSPORT
 app.use(passport.initialize()); // notes 4.7 pg. 78
 app.use(passport.session());
@@ -51,10 +52,10 @@ passport.use(new LocalStrategy(
       
       if (err) return done(err);
       if (!user) return done(null, false);
-      if (user.password != password) return done(null, false);
+      const matchedPassword = bcrypt.compare(password, user.password);
+      if (!matchedPassword) return done(null, false);
       return done(null, user);
     });
-
   })
 );
 
@@ -67,10 +68,8 @@ passport.deserializeUser((id, done) => {
     if (err) {
       return next(err);
     }
-
     const user = result.rows[0];
     done(null, user);
-    
   })
 });
 
@@ -88,7 +87,9 @@ app.use((err, req, res, next) => {
 });
 
 
+// RUN SERVER
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);
-  });
+  }
+);
   
