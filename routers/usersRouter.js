@@ -2,15 +2,13 @@ const express = require('express');
 const passport = require('passport');
 const usersRouter = express.Router();
 
-const {
-    registerUser
-} = require('../models/usersModel');
+const { registerUser } = require('../models/usersModel');
 
 // ROUTES 
 
 /* load login page  */
 usersRouter.get('/login', (req, res, next) => {
-    res.render('LOGIN');
+    res.status(200).send('Welcome to the Login Page');
 });
 
 
