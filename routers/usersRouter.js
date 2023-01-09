@@ -8,19 +8,23 @@ const { registerUser } = require('../models/usersModel');
 
 /* logout user */
 usersRouter.get("/logout", (req, res) => {
-    req.logout();
+    req.logout((err) => {
+        if (err) return next(err);
+    });
     res.status(200).send('User logged out');
     //res.redirect("/");
-  });
+  }
+);
   
 
 /* load login page  */
 usersRouter.get('/login', (req, res, next) => {
     res.status(200).send('Welcome to the Login Page');
+    //res.render();
 });
 
 
-/* login user  */
+/* login user with local strategy */
 usersRouter.post(
     '/login', 
     passport.authenticate("local"/*, { failureRedirect: '/login', failureMessage: true} */), 
@@ -29,6 +33,9 @@ usersRouter.post(
     }
 );
 
+/* login user with google strategy */
+
+/* login user with facebook strategy */
 
 /* create new user (authentication of user not needed) */
 usersRouter.post('/register', registerUser);
