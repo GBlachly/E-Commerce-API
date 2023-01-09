@@ -6,6 +6,14 @@ const { registerUser } = require('../models/usersModel');
 
 // ROUTES 
 
+/* logout user */
+usersRouter.get("/logout", (req, res) => {
+    req.logout();
+    res.status(200).send('User logged out');
+    //res.redirect("/");
+  });
+  
+
 /* load login page  */
 usersRouter.get('/login', (req, res, next) => {
     res.status(200).send('Welcome to the Login Page');
