@@ -12,9 +12,9 @@ const store = new session.MemoryStore();
 during development, NOT during production due to security risks. */
 
 const passport = require("passport");
-const LocalStrategy = require("passport-local").Strategy;
+const localStrat = require('./passportStrats/localStrat');
+
 const db = require('./db/db');
-const bcrypt = require('bcrypt');
 
 const PORT = process.env.port || 4001;
 
@@ -44,21 +44,6 @@ app.use(
 app.use(passport.initialize()); // notes 4.7 pg. 78
 app.use(passport.session());
 
-passport.use(new LocalStrategy(
-  function (username, password, done) {
-    db.query('SELECT * FROM users WHERE username = $1;', [username], (err, result) => {
-      
-      const user = result.rows[0];
-      
-      if (err) return done(err);
-      if (!user) return done(null, false);
-      const matchedPassword = bcrypt.compare(password, user.password);
-      if (!matchedPassword) return done(null, false);
-      return done(null, user);
-    });
-  })
-);
-
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
@@ -72,6 +57,8 @@ passport.deserializeUser((id, done) => {
     done(null, user);
   })
 });
+
+passport.use("local", localStrat);
 
 
 // ROUTES

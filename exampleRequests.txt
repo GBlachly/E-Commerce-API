@@ -1,4 +1,4 @@
-// Example for create order request
+// Create order request body (POST: localhost:4001/orders/)
 {
     "userId": 2345, 
     "totalPrice": 314.99, 
@@ -8,3 +8,19 @@
         {"productId": 3, "quantity": 6}
     ]
 };
+
+
+// Register user request body (POST: localhost:4001/users/register)
+{
+    "username": "testUsername",
+    "password": "testPassword",
+    "email": "testemail@aol.com"
+};
+
+
+// Login user request body (POST: localhost:4001/users/login)
+{
+    "username": "testUsername",
+    "password": "testPassword"
+};
+
