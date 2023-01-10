@@ -52,7 +52,7 @@ const createCart= async (req, res, next) => {
         const cartId = result.rows[0].id;
 
         const statement2 = `INSERT INTO carts_products (cart_id, product_id, product_name, quantity)
-                            VALUES ($1, $2, $3, $4)`;
+                            VALUES ($1, $2, $3, $4);`;
         products.forEach((product) => {
             db.query(statement2, [cartId, product.productId, product.productName, product.quantity])
         });
@@ -61,7 +61,7 @@ const createCart= async (req, res, next) => {
 
     } catch(err) {
         return next(err);
-    }
+    };
 };
 
 
@@ -119,21 +119,27 @@ const updateCartItemQuantity = (req, res, next) => {
 };
 
 
-const deleteCart = (req, res, next) => {
+const deleteCart = async (req, res, next) => {
     const { userId } = req.body;
     //const userId = req.user.id;
 
-    const statement = ``;
-    
-    db.query(statement,
-            [userId],
-            (err, result) => {
-                if (err) {
-                    return next(err);
-                }
-                res.status().send();
-            }
-    );
+    try {
+        //PostgreSQL allows you to return deleted information from a delete statement (other sql may not)
+        const statement1 = `DELETE FROM carts
+                            WHERE user_id = $1
+                            RETURNING *;`;
+        const result = await db.queryNoCB(statement1, [userId]);
+        const deletedCartId = result.rows[0].id;
+
+        const statement2 = `DELETE FROM carts_products
+                            WHERE cart_id = $1;`;
+        db.queryNoCB(statement2, [deletedCartId]);
+
+        res.status(200).send(`Cart with ID: ${deletedCartId} was deleted`);
+
+    } catch(err) {
+        return next(err);
+    };
 };
 
 
