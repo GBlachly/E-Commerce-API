@@ -4,7 +4,9 @@ const cartsRouter = express.Router();
 const {
     getCartByUserId, 
     createCart,
-    //updateCart functions,
+    addItemToCart,
+    deleteItemFromCart,
+    updateCartItemQuantity,
     deleteCart,
     checkout
 } = require('../models/cartsModel');
@@ -15,12 +17,14 @@ const {
 cartsRouter.get('/', getCartByUserId);
 
 
-/* create users cart (created when a user places an item into the shopping cart) */
+/* create users cart (created when a user places an item into the shopping cart, should also add an item to cart) */
 cartsRouter.post('/', createCart);
 
 
 /* update user cart (many different routes here depending on the different ways cart can be updated) */
-//cartsRouter.put('/', updateCart);
+cartsRouter.put('/addItem', addItemToCart);
+cartsRouter.put('/deleteItem', deleteItemFromCart);
+cartsRouter.put('/updateQuantity', updateCartItemQuantity);
 
 
 /* delete user cart (empty cart button) */

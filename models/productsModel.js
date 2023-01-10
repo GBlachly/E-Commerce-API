@@ -23,6 +23,18 @@ const getProductByName = (req, res, next) => {
 };
 
 
+const getProductById = (req, res, next) => {
+    const productId = Number(req.params.productName);
+    
+    db.query(`SELECT * FROM products WHERE id = $1;`, [productId], (err, result) => {
+        if (err) {
+            return next(err)
+        }
+        res.status(200).json( result.rows[0] );
+    });
+};
+
+
 // (admin use/ not needed for a user based api)
 const createProduct = (req, res, next) => {
     const { name, price, stock } = req.body;
@@ -66,6 +78,7 @@ const deleteProduct = (req, res, next) => {
 module.exports = {
     getAllProducts,
     getProductByName,
+    getProductById,
     createProduct, 
     updateProduct,
     deleteProduct
