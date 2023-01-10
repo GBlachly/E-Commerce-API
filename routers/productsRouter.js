@@ -11,6 +11,7 @@ const {
 
 const checkAdmin = require('../passportStrats/checkAdmin');
 
+
 // USER ROUTES
 /* get all products (authentication of user not needed) */
 productsRouter.get('/', getAllProducts);

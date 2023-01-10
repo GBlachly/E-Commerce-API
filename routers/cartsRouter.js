@@ -1,28 +1,37 @@
 const express = require('express');
 const cartsRouter = express.Router();
 
-const db = require('../db/db');
+const {
+    getCartByUserId, 
+    createCart,
+    //updateCart functions,
+    deleteCart,
+    checkout
+} = require('../models/cartsModel');
 
-//ROUTES
 
-/* create users cart (should be created at the same time that the users account is created/ 
-starts off empty/ prob doesnt need its own path (same path as create user)) */
-
-
+// ROUTES
 /* get users cart by user id (possibly happens upon login) */
+cartsRouter.get('/', getCartByUserId);
+
+
+/* create users cart (created when a user places an item into the shopping cart) */
+cartsRouter.post('/', createCart);
+
+
+/* update user cart (many different routes here depending on the different ways cart can be updated) */
+//cartsRouter.put('/', updateCart);
+
+
+/* delete user cart (empty cart button) */
+cartsRouter.delete('/', deleteCart);
 
 
 
-/* update user cart (happens when user adds or deletes product from cart) */
-
-
-/* alter/empty user cart (happens when order is placed/ may need to make placing order 
-and emptying cart use the same path) */
-
-
-/* delete user cart (happens when user deleted their account/ 
-prob doesnt need its own path (same path as delete user)) */
-
+// CHECKOUT ROUTE
+/* (take info from cart and carts_products, add to orders, delete from carts and carts_products)
+(needs cart info, user info, payment info) */
+cartsRouter.post('/checkout', checkout);
 
 
 module.exports = cartsRouter;

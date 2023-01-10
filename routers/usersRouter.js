@@ -9,8 +9,8 @@ const {
     deleteUser
 } = require('../models/usersModel');
 
-// ROUTES 
 
+// ROUTES 
 /* logout user */
 usersRouter.get("/logout", (req, res) => {
     req.logout((err) => {
@@ -22,7 +22,7 @@ usersRouter.get("/logout", (req, res) => {
 );
   
 
-/* GET/load login page  */
+/* get/load login page  */
 usersRouter.get('/login', (req, res, next) => {
     res.status(200).send('Welcome to the Login Page');
     //res.render();
@@ -56,6 +56,7 @@ usersRouter.delete('/delete', deleteUser);
 
 
 /* login user with google strategy */
+
 
 /* login user with facebook strategy */
 
