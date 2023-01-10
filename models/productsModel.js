@@ -12,10 +12,10 @@ const getAllProducts = (req, res, next) => {
 };
 
 
-const getProductById = (req, res, next) => {
-    const productId = Number(req.params.productId);
+const getProductByName = (req, res, next) => {
+    const productName = req.params.productName;
     
-    db.query('SELECT * FROM products WHERE id = $1;', [productId], (err, result) => {
+    db.query('SELECT * FROM products WHERE name LIKE %$1%;', [productName], (err, result) => {
         if (err) {
             return next(err)
         }
@@ -69,7 +69,7 @@ const deleteProduct = (req, res, next) => {
 
 module.exports = {
     getAllProducts,
-    getProductById,
+    getProductByName,
     createProduct, 
     updateProduct,
     deleteProduct

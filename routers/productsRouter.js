@@ -3,28 +3,32 @@ const productsRouter = express.Router();
 
 const {
     getAllProducts,
-    getProductById,
+    getProductByName,
     createProduct, 
     updateProduct,
     deleteProduct
 } = require('../models/productsModel');
 
-// ROUTES
+const checkAdmin = require('../passportStrats/checkAdmin');
 
+// USER ROUTES
 /* get all products (authentication of user not needed) */
 productsRouter.get('/', getAllProducts);
 
 /* get product by id (may want to add a route to get product by name) (authentication of user not needed) */
-productsRouter.get('/:productId', getProductById);
+productsRouter.get('/:productName', getProductByName);
 
+
+
+// ADMIN ROUTES
 /* create new product (admin only) */
-productsRouter.post('/', createProduct);
+productsRouter.post('/', checkAdmin, createProduct);
 
 /* update product (stock should update when product is added to an order/ otherwise admin only) */
-productsRouter.put('/:productId', updateProduct);
+productsRouter.put('/:productId', checkAdmin, updateProduct);
 
 /* delete product by Id (admin only) */
-productsRouter.delete('/:productId', deleteProduct);
+productsRouter.delete('/:productId', checkAdmin, deleteProduct);
 
 
 module.exports = productsRouter;

@@ -9,6 +9,16 @@
     ]
 };
 
+--> Same thing but using passport, so the user must be logged in, and therefore userId shouldnt be in the request)
+{
+    "totalPrice": 314.99, 
+    "items": [
+        {"productId": 1, "quantity": 4}, 
+        {"productId": 2, "quantity": 5}, 
+        {"productId": 3, "quantity": 6}
+    ]
+};
+
 
 // Register user request body (POST: localhost:4001/users/register)
 {

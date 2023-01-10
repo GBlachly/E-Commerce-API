@@ -52,9 +52,37 @@ const createOrder = async (req, res, next) => {
 };
 
 
+const updateOrder = (req, res, next) => {
+    const orderId = Number(req.params.orderId);
+    const { userId, totalPrice, shipStatus } = req.body;
+
+    db.query(`ALTER TABLE orders SET user_id = $2, total_price = $3, ship_status = $4 WHERE id = $1;`, 
+            [orderId, userId, totalPrice, shipStatus], 
+            (err, result) => {
+                if (err) {
+                    return next(err)
+                }
+                res.status(200).send(`Order with ID: ${productId} was updated`)
+            }
+    );
+};
+
+
+const deleteOrder = (req, res, next) => {
+    const orderId = Number(req.params.orderId);
+
+    db.query('DELETE FROM orders WHERE id = $1;', [orderId], (err, result) => {
+        if (err) {
+            return next(err)
+        }
+        res.status(200).send(`Order with ID: ${orderId} was deleted`)
+    }); 
+};
 
 module.exports = {
     getOrderById,
     getOrdersByUserId,
     createOrder,
+    updateOrder,
+    deleteOrder
 };
