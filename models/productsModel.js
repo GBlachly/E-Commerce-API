@@ -8,7 +8,6 @@ const getAllProducts = (req, res, next) => {
         }
         res.status(200).json( result.rows );
     });
-
 };
 
 
@@ -34,7 +33,6 @@ const createProduct = (req, res, next) => {
         }
         res.status(201).send(`Product created with ID: ${result.rows[0].id}`)
     });
-    
 };
 
 
@@ -49,7 +47,6 @@ const updateProduct = (req, res, next) => {
         }
         res.status(200).send(`Product with ID: ${productId} was updated`)
     });
-    
 };
 
 
@@ -63,7 +60,6 @@ const deleteProduct = (req, res, next) => {
         }
         res.status(200).send(`Product with ID: ${productId} was deleted`)
     });
-    
 };
 
 

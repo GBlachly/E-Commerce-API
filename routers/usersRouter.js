@@ -2,7 +2,12 @@ const express = require('express');
 const passport = require('passport');
 const usersRouter = express.Router();
 
-const { registerUser } = require('../models/usersModel');
+const { 
+    registerUser, 
+    updateUsername, 
+    updatePassword,
+    deleteUser
+} = require('../models/usersModel');
 
 // ROUTES 
 
@@ -12,7 +17,7 @@ usersRouter.get("/logout", (req, res) => {
         if (err) return next(err);
     });
     res.status(200).send('User logged out');
-    //res.redirect("/");
+    //res.redirect("/login");
   }
 );
   
@@ -38,11 +43,16 @@ usersRouter.post(
 usersRouter.post('/register', registerUser);
 
 
-/* update user information  */
+/* update user usename  */
+usersRouter.put('/username', updateUsername);
+
+
+/* update user password */
+usersRouter.put('/password', updatePassword);
 
 
 /* delete user account  */
-
+usersRouter.delete('/delete', deleteUser);
 
 
 /* login user with google strategy */
