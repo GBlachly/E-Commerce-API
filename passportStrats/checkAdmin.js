@@ -6,4 +6,6 @@ const checkAdmin = (req, res, next) => {
     }
 };
 
+//will not work until i figure out how req.user (user auth from passport) works
+
 module.exports = checkAdmin;

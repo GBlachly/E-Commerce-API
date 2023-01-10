@@ -17,7 +17,7 @@ usersRouter.get("/logout", (req, res) => {
 );
   
 
-/* load login page  */
+/* GET/load login page  */
 usersRouter.get('/login', (req, res, next) => {
     res.status(200).send('Welcome to the Login Page');
     //res.render();
@@ -33,9 +33,6 @@ usersRouter.post(
     }
 );
 
-/* login user with google strategy */
-
-/* login user with facebook strategy */
 
 /* create new user (authentication of user not needed) */
 usersRouter.post('/register', registerUser);
@@ -46,6 +43,11 @@ usersRouter.post('/register', registerUser);
 
 /* delete user account  */
 
+
+
+/* login user with google strategy */
+
+/* login user with facebook strategy */
 
 
 module.exports = usersRouter;

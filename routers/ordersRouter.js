@@ -2,9 +2,9 @@ const express = require('express');
 const ordersRouter = express.Router();
 
 const {
-    getOrderById,
     getOrdersByUserId,
     createOrder,
+    getOrderById,
     updateOrder,
     deleteOrder
 } = require('../models/ordersModel');
@@ -14,7 +14,7 @@ const checkAdmin = require('../passportStrats/checkAdmin');
 
 // USER ROUTES
 /* get all orders for authenticated user */
-ordersRouter.get('/user/:userId', getOrdersByUserId);
+ordersRouter.get('/user/:userId', /* '/' */ getOrdersByUserId);
 
 /* create new order (should come from what is in the user's cart/ users cart should be emptied once order is placed) */
 ordersRouter.post('/', createOrder);

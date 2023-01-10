@@ -15,11 +15,11 @@ const getAllProducts = (req, res, next) => {
 const getProductByName = (req, res, next) => {
     const productName = req.params.productName;
     
-    db.query('SELECT * FROM products WHERE name LIKE %$1%;', [productName], (err, result) => {
+    db.query(`SELECT * FROM products WHERE name LIKE '%$1%';`, [productName], (err, result) => {
         if (err) {
             return next(err)
         }
-        res.status(200).json( result.rows[0] );
+        res.status(200).json( result.rows );
     });
 };
 

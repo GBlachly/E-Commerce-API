@@ -1,20 +1,9 @@
 const db = require('../db/db');
 
 
-const getOrderById = (req, res, next) => {
-    const orderId = Number(req.params.orderId);
-
-    db.query('SELECT * FROM orders WHERE id = $1', [orderId], (err, result) => {
-        if (err) {
-            return next(err)
-        }
-        res.status(200).send(result.rows[0]);
-    });
-};
-
-
 const getOrdersByUserId = (req, res, next) => {
     const userId = Number(req.params.userId);
+    //const userId = req.user.id;
 
     db.query('SELECT * FROM orders WHERE user_id = $1;', [userId], (err, result) => {
         if (err) {
@@ -26,9 +15,10 @@ const getOrdersByUserId = (req, res, next) => {
 
 
 const createOrder = async (req, res, next) => {
-    const { userId, totalPrice } = req.body;
-    //requested order should give object with userid, totalPrice, items. items will be an array of objects with the productId and quantity
-    const { items } = req.body;
+    const { userId } = req.body;
+    //const userId = req.user.id;
+
+    const { totalPrice, items } = req.body;
     
     try {
         const statement1 = `INSERT INTO orders (user_id, total_price) 
@@ -49,6 +39,18 @@ const createOrder = async (req, res, next) => {
     } catch(err) {
         return next(err)
     }  
+};
+
+
+const getOrderById = (req, res, next) => {
+    const orderId = Number(req.params.orderId);
+
+    db.query('SELECT * FROM orders WHERE id = $1', [orderId], (err, result) => {
+        if (err) {
+            return next(err)
+        }
+        res.status(200).send(result.rows[0]);
+    });
 };
 
 
