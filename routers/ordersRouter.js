@@ -23,13 +23,13 @@ ordersRouter.post('/', createOrder);
 
 // ADMIN ROUTES
 /* get order by order Id (admin only, to look up orders) */
-ordersRouter.get('/id/:orderId', checkAdmin, getOrderById);
+ordersRouter.get('/:orderId', checkAdmin, getOrderById);
 
 /* update order (admin only, maybe allow user to update shipping address or something like that) */
-ordersRouter.put('/id/:orderId', checkAdmin, updateOrder);
+ordersRouter.put('/:orderId', checkAdmin, updateOrder);
 
 /* delete order (admin only) */
-ordersRouter.delete('/id/:orderId', checkAdmin, deleteOrder);
+ordersRouter.delete('/:orderId', checkAdmin, deleteOrder);
 
 
 module.exports = ordersRouter;
