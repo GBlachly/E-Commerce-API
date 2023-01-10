@@ -10,16 +10,7 @@ starts off empty/ prob doesnt need its own path (same path as create user)) */
 
 
 /* get users cart by user id (possibly happens upon login) */
-cartsRouter.get('/:userId', (req, res, next) => {
-    const userId = Number(req.params.userId);
 
-    db.query('SELECT * FROM carts WHERE user_id = $1', [userId], (err, result) => {
-        if (err) {
-            return next(err)
-        }
-        res.status(200).send(result.row[0]);
-    })
-});
 
 
 /* update user cart (happens when user adds or deletes product from cart) */

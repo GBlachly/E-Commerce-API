@@ -18,7 +18,7 @@ const createOrder = async (req, res, next) => {
     const { userId } = req.body;
     //const userId = req.user.id;
 
-    const { totalPrice, items } = req.body;
+    const { totalPrice, items /*, payment object*/ } = req.body;
     
     try {
         const statement1 = `INSERT INTO orders (user_id, total_price) 
