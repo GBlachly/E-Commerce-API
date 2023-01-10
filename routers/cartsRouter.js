@@ -17,7 +17,7 @@ const {
 cartsRouter.get('/', getCartByUserId);
 
 
-/* create users cart (created when a user places an item into the shopping cart, should also add an item to cart) */
+/* create users cart (created when a user places an item into the shopping cart, must also add item to cart) */
 cartsRouter.post('/', createCart);
 
 
