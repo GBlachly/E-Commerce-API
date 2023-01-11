@@ -1,36 +1,131 @@
-// Create order request body (POST: localhost:4001/orders/)
+ROUTES AND EXAMPLE REQUEST BODIES (json)
+
+*** If user is not logged in, then *** routes must add a "userId" in the request body to test routes
+
+
+USERS
+1) Logout User (GET: localhost:4001/users/logout)
+
+2) Get Login Page (GET: localhost:4001/users/login)
+
+3) Login user (POST: localhost:4001/users/login)
+    Ex
+    {
+        "username": "testUsername",
+        "password": "testPassword"
+    };
+
+4) Register user (POST: localhost:4001/users/register)
+    Ex
+    {
+        "username": "testUsername",
+        "password": "testPassword",
+        "email": "testemail@aol.com",
+        "admin": false
+    };
+
+5) Update Username*** (PUT: localhost:4001/users/username)
+    Ex
+    {
+        "username": "newUsername"
+    };
+
+6) Update Password*** (PUT: localhost:4001/users/password)
+    Ex
+    {
+        "password": "newPassword",
+    };
+
+7) Delete User*** (DELETE: localhost:4001/users/delete)
+
+
+
+PRODUCTS
+1) Get All Products (GET: localhost:4001/products/)
+
+2) Get Product By Name (GET: localhost:4001/products/name/:productName)
+
+3) Get Product By ID (GET: localhost:4001/products/id/:productId)
+
+4) Create Product (Admin Only Route) (POST: localhost:4001/products/)
+Ex
+    {
+        "name": "Product Name",
+        "price": 19.99,
+        "stock": 10
+    };
+
+5) Update Product (Admin Only Route) (PUT: localhost:4001/products/id/:productId)
+Ex
+    {
+        "name": "New Product Name",
+        "price": 29.99,
+        "stock": 11
+    };
+
+6) Delete Product (Admin Only Route) (DELETE: localhost:4001/products/id/:productId)
+
+
+
+CARTS
+1) Get User Cart*** (GET: localhost:4001/carts/)
+
+2) Create Cart*** (POST: localhost:4001/carts/)
+Ex
 {
-    "userId": 2345, 
     "totalPrice": 314.99, 
-    "items": [
+    "products": [
+        {"productId": 1, "productName": "Item One", "quantity": 4}, 
+        {"productId": 2, "productName": "Item Two", "quantity": 5}, 
+        {"productId": 3, "productName": "Item Three", "quantity": 6}
+    ]
+};
+
+3) Add Item To Cart*** (POST: localhost:4001/carts/addItem)
+Ex
+{};
+
+4) Delete Item From Cart*** (DELETE: localhost:4001/carts/deleteItem)
+Ex
+{};
+
+5) Update Cart Item Quantity*** (PUT: localhost:4001/carts/updateQuantity)
+Ex
+{};
+
+6) Delete Cart*** (DELETE: localhost:4001/carts/)
+
+
+
+CHECKOUT
+1) Checkout*** (POST: localhost:4001/carts/checkout)
+Ex
+{};
+
+
+
+ORDERS (needs to be updated to edit/get orders_products in ordersModel.js, and in these examples)
+1) Get Orders By User ID*** (GET: localhost:4001/orders/) (CURRENTLY ONLY GETS ORDER INFO AND NOT ORDERS_PRODUCTS INFO)
+
+2) Create Order*** (POST: localhost:4001/orders/)
+Ex
+{
+    "totalPrice": 314.99, 
+    "products": [
         {"productId": 1, "quantity": 4}, 
         {"productId": 2, "quantity": 5}, 
         {"productId": 3, "quantity": 6}
     ]
 };
 
---> Same thing but using passport, so the user must be logged in, and therefore userId shouldnt be in the request)
+3) Get Order By Order ID (Admin Only Route) (GET: localhost:4001/orders/:orderId) (CURRENTLY ONLY GETS ORDER INFO AND NOT ORDERS_PRODUCTS INFO)
+
+4) Update Order (Admin Only Route) (PUT: localhost:4001/orders/:orderId) (CURRENTLY ONLY GETS ORDER INFO AND NOT ORDERS_PRODUCTS INFO)
+Ex
 {
+    "userId": 123,
     "totalPrice": 314.99, 
-    "items": [
-        {"productId": 1, "quantity": 4}, 
-        {"productId": 2, "quantity": 5}, 
-        {"productId": 3, "quantity": 6}
-    ]
+    "shipStatus": true
 };
 
-
-// Register user request body (POST: localhost:4001/users/register)
-{
-    "username": "testUsername",
-    "password": "testPassword",
-    "email": "testemail@aol.com"
-};
-
-
-// Login user request body (POST: localhost:4001/users/login)
-{
-    "username": "testUsername",
-    "password": "testPassword"
-};
-
+5) Delete Order (Admin Only Route) (DELETE: localhost:4001/orders/:orderId) (CURRENTLY ONLY DELETES ORDER INFO AND NOT ORDERS_PRODUCTS INFO)

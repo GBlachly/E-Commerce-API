@@ -3,13 +3,13 @@ const bcrypt = require('bcrypt');
 
 
 const registerUser = async (req, res, next) => {
-    const {username, password, email} = req.body;
+    const {username, password, email, admin} = req.body;
     const salt = await bcrypt.genSalt(10);
     const passwordHash = await bcrypt.hash(password, salt);
    
-    db.query(`INSERT INTO users (username, password, email)
-            VALUES ($1, $2, $3) RETURNING username, email;`, 
-            [username, passwordHash, email], 
+    db.query(`INSERT INTO users (username, password, email, admin)
+            VALUES ($1, $2, $3, $4) RETURNING username, email;`, 
+            [username, passwordHash, email, admin], 
             (err, result) => {
                 if (err) {
                     return next(err)

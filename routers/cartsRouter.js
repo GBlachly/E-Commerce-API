@@ -22,8 +22,8 @@ cartsRouter.post('/', createCart);
 
 
 /* update user cart (many different routes here depending on the different ways cart can be updated) */
-cartsRouter.put('/addItem', addItemToCart);
-cartsRouter.put('/deleteItem', deleteItemFromCart);
+cartsRouter.post('/addItem', addItemToCart);
+cartsRouter.delete('/deleteItem', deleteItemFromCart);
 cartsRouter.put('/updateQuantity', updateCartItemQuantity);
 
 

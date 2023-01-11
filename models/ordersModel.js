@@ -18,7 +18,7 @@ const createOrder = async (req, res, next) => {
     const { userId } = req.body;
     //const userId = req.user.id;
 
-    const { totalPrice, items /*, payment object*/ } = req.body;
+    const { totalPrice, products /*, payment object*/ } = req.body;
     
     try {
         const statement1 = `INSERT INTO orders (user_id, total_price) 
@@ -30,8 +30,8 @@ const createOrder = async (req, res, next) => {
         /* HERE WE WANT TO ADD THE PRODUCTS AND THEIR QUANTITIES TO THE orders_products/ordered_items TABLE USING THE RETURNED orderID */
         const statement2 = `INSERT INTO orders_products (order_id, product_id, quantity) 
                             VALUES ($1, $2, $3)`;
-        items.forEach((item) => {
-           db.queryNoCB(statement2, [orderId, item.productId, item.quantity]);
+        products.forEach((product) => {
+           db.queryNoCB(statement2, [orderId, product.productId, product.quantity]);
         }); 
 
         res.status(201).send(`Order ID is ${orderId}`);
@@ -66,7 +66,7 @@ const updateOrder = (req, res, next) => {
                 if (err) {
                     return next(err)
                 }
-                res.status(200).send(`Order with ID: ${productId} was updated`)
+                res.status(200).send(`Order with ID: ${orderId} was updated`)
             }
     );
 };
