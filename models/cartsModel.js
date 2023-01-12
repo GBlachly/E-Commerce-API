@@ -70,17 +70,7 @@ const addItemToCart = (req, res, next) => {
     const { userId } = req.body;
     //const userId = req.user.id;
 
-    const statement = ``;
     
-    db.query(statement,
-            [userId],
-            (err, result) => {
-                if (err) {
-                    return next(err);
-                }
-                res.status().send();
-            }
-    );
 };
 
 
@@ -88,17 +78,7 @@ const deleteItemFromCart = (req, res, next) => {
     const { userId } = req.body;
     //const userId = req.user.id;
 
-    const statement = ``;
     
-    db.query(statement,
-            [userId],
-            (err, result) => {
-                if (err) {
-                    return next(err);
-                }
-                res.status().send();
-            }
-    );
 };
 
 
@@ -106,17 +86,7 @@ const updateCartItemQuantity = (req, res, next) => {
     const { userId } = req.body;
     //const userId = req.user.id;
 
-    const statement = ``;
     
-    db.query(statement,
-            [userId],
-            (err, result) => {
-                if (err) {
-                    return next(err);
-                }
-                res.status().send();
-            }
-    );
 };
 
 

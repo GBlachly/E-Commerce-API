@@ -74,7 +74,7 @@ Ex- Response
 4) Create Product (Admin Only Route) (POST: localhost:4001/products/)
 Ex- Request Body
     {
-        "name": "Product Name",
+        "name": "Item Name",
         "price": 19.99,
         "stock": 10
     };
@@ -82,7 +82,7 @@ Ex- Request Body
 5) Update Product (Admin Only Route) (PUT: localhost:4001/products/id/:productId)
 Ex- Request Body
     {
-        "name": "New Product Name",
+        "name": "New Item Name",
         "price": 29.99,
         "stock": 11
     };
@@ -94,7 +94,17 @@ Ex- Request Body
 CARTS
 1) Get User Cart*** (GET: localhost:4001/carts/)
 Ex- Response
-    {};
+    {
+        "cartId": 123,
+        "userId": 234,
+        "totalPrice": 199.99,
+        "products": [
+            {"productId": 1, "productName": "Item One", "quantity": 4}, 
+            {"productId": 2, "productName": "Item Two", "quantity": 5}, 
+            {"productId": 3, "productName": "Item Three", "quantity": 6},
+            ...
+        ]
+    };
 
 2) Create Cart*** (POST: localhost:4001/carts/)
 Ex- Request Body
