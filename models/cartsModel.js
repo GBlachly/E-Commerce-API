@@ -66,27 +66,69 @@ const createCart= async (req, res, next) => {
 };
 
 
-const addItemToCart = (req, res, next) => {
+const addItemToCart = async (req, res, next) => {
     const { userId } = req.body;
     //const userId = req.user.id;
 
-    
+    const { productId, productName, quantity } = req.body;
+
+    try {
+        const result = await db.queryNoCB('SELECT * FROM carts WHERE user_id = $1;', [userId]);
+        const cartId = result.rows[0].id;
+
+        const statement = `INSERT INTO carts_products (cart_id, product_id, product_name, quantity)
+                            VALUES ($1, $2, $3, $4);`;
+        db.query(statement, [cartId, productId, productName, quantity]);
+
+        res.status(200).send(`Item: ${productId} added to cart ${cartId}`);
+
+    } catch(err) {
+        return next(err);
+    };
 };
 
 
-const deleteItemFromCart = (req, res, next) => {
+const deleteItemFromCart = async (req, res, next) => {
     const { userId } = req.body;
     //const userId = req.user.id;
 
-    
+    const { productId } = req.body;
+
+    try {
+        const result = await db.queryNoCB('SELECT * FROM carts WHERE user_id = $1;', [userId]);
+        const cartId = result.rows[0].id;
+
+        const statement = 'DELETE FROM carts_products WHERE cart_id = $1 AND product_id = $2;';
+        db.queryNoCB(statement, [cartId, productId]);
+
+        res.status(200).send(`Item: ${productId} added to cart ${cartId}`);
+
+    } catch(err) {
+        return next(err);
+    };
 };
 
 
-const updateCartItemQuantity = (req, res, next) => {
+const updateCartItemQuantity = async (req, res, next) => {
     const { userId } = req.body;
     //const userId = req.user.id;
 
-    
+    const { productId, quantity } = req.body;
+
+    try {
+        const result = await db.queryNoCB('SELECT * FROM carts WHERE user_id = $1;', [userId]);
+        const cartId = result.rows[0].id;
+
+        const statement = `ALTER TABLE carts_products 
+                            SET quantity = $3
+                            WHERE cart_id = $1 AND productId = $2;`;
+        db.queryNoCB(statement, [cartId, productId, quantity]);
+
+        res.status(200).send(`Quantity of Item: ${productId} has been updated to ${quantity}`);
+
+    } catch(err) {
+        return next(err);
+    };
 };
 
 

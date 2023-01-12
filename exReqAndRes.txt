@@ -113,21 +113,31 @@ Ex- Request Body
         "products": [
             {"productId": 1, "productName": "Item One", "quantity": 4}, 
             {"productId": 2, "productName": "Item Two", "quantity": 5}, 
-            {"productId": 3, "productName": "Item Three", "quantity": 6}
+            {"productId": 3, "productName": "Item Three", "quantity": 6},
+            ...
         ]
     };
 
 EDIT 3) Add Item To Cart*** (POST: localhost:4001/carts/addItem)
 Ex- Request Body
-    {};
+    {
+        "productId": 1,
+        "productName": "Item One",
+        "quantity": 4
+    };
 
 EDIT 4) Delete Item From Cart*** (DELETE: localhost:4001/carts/deleteItem)
 Ex- Request Body
-    {};
+    {
+        "productId": 1
+    };
 
 EDIT 5) Update Cart Item Quantity*** (PUT: localhost:4001/carts/updateQuantity)
 Ex- Request Body
-    {};
+    {
+        "productId": 1,
+        "quantity": 5
+    };
 
 6) Delete Cart*** (DELETE: localhost:4001/carts/)
 
@@ -192,7 +202,8 @@ Ex- Request Body
         "products": [
             {"productId": 1, "quantity": 4}, 
             {"productId": 2, "quantity": 5}, 
-            {"productId": 3, "quantity": 6}
+            {"productId": 3, "quantity": 6},
+            ...
         ]
     };
 
