@@ -36,7 +36,8 @@ const getOrdersByUserId = async (req, res, next) => {
             userOrders.push(orderObject);
         };
         
-        res.status(200).json(userOrders);
+        
+        res.status(200).json({ userOrders: userOrders });
         
     } catch(err) {
         next(err);
