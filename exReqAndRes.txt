@@ -1,4 +1,4 @@
-ROUTES AND EXAMPLE REQUEST BODIES (json)
+ROUTES, EXAMPLE REQUEST BODIES, AND EXAMPLE RESPONSES (json)
 
 *** If user is not logged in, then *** routes must add a "userId" in the request body to test routes
 
@@ -7,16 +7,18 @@ USERS
 1) Logout User (GET: localhost:4001/users/logout)
 
 2) Get Login Page (GET: localhost:4001/users/login)
+Ex- Response
+    {};
 
 3) Login user (POST: localhost:4001/users/login)
-    Ex
+Ex- Request Body
     {
         "username": "testUsername",
         "password": "testPassword"
     };
 
 4) Register user (POST: localhost:4001/users/register)
-    Ex
+Ex- Request Body
     {
         "username": "testUsername",
         "password": "testPassword",
@@ -25,13 +27,13 @@ USERS
     };
 
 5) Update Username*** (PUT: localhost:4001/users/username)
-    Ex
+Ex- Request Body
     {
         "username": "newUsername"
     };
 
 6) Update Password*** (PUT: localhost:4001/users/password)
-    Ex
+Ex- Request Body
     {
         "password": "newPassword",
     };
@@ -42,13 +44,19 @@ USERS
 
 PRODUCTS
 1) Get All Products (GET: localhost:4001/products/)
+Ex- Response
+    {};
 
 2) Get Product By Name (GET: localhost:4001/products/name/:productName)
+Ex- Response
+    {};
 
-3) Get Product By ID (GET: localhost:4001/products/id/:productId)
+3) Get Product By Id (GET: localhost:4001/products/id/:productId)
+Ex- Response
+    {};
 
 4) Create Product (Admin Only Route) (POST: localhost:4001/products/)
-Ex
+Ex- Request Body
     {
         "name": "Product Name",
         "price": 19.99,
@@ -56,7 +64,7 @@ Ex
     };
 
 5) Update Product (Admin Only Route) (PUT: localhost:4001/products/id/:productId)
-Ex
+Ex- Request Body
     {
         "name": "New Product Name",
         "price": 29.99,
@@ -69,29 +77,31 @@ Ex
 
 CARTS
 1) Get User Cart*** (GET: localhost:4001/carts/)
+Ex- Response
+    {};
 
 2) Create Cart*** (POST: localhost:4001/carts/)
-Ex
-{
-    "totalPrice": 314.99, 
-    "products": [
-        {"productId": 1, "productName": "Item One", "quantity": 4}, 
-        {"productId": 2, "productName": "Item Two", "quantity": 5}, 
-        {"productId": 3, "productName": "Item Three", "quantity": 6}
-    ]
-};
+Ex- Request Body
+    {
+        "totalPrice": 314.99, 
+        "products": [
+            {"productId": 1, "productName": "Item One", "quantity": 4}, 
+            {"productId": 2, "productName": "Item Two", "quantity": 5}, 
+            {"productId": 3, "productName": "Item Three", "quantity": 6}
+        ]
+    };
 
 EDIT 3) Add Item To Cart*** (POST: localhost:4001/carts/addItem)
-Ex
-{};
+Ex- Request Body
+    {};
 
 EDIT 4) Delete Item From Cart*** (DELETE: localhost:4001/carts/deleteItem)
-Ex
-{};
+Ex- Request Body
+    {};
 
 EDIT 5) Update Cart Item Quantity*** (PUT: localhost:4001/carts/updateQuantity)
-Ex
-{};
+Ex- Request Body
+    {};
 
 6) Delete Cart*** (DELETE: localhost:4001/carts/)
 
@@ -99,33 +109,35 @@ Ex
 
 CHECKOUT
 EDIT 1) Checkout*** (POST: localhost:4001/carts/checkout)
-Ex
-{};
+Ex- Request Body
+    {};
 
 
 
-ORDERS (needs to be updated to edit/get orders_products in ordersModel.js, and in these examples)
-EDIT 1) Get Orders By User ID*** (GET: localhost:4001/orders/) (CURRENTLY ONLY GETS ORDER INFO AND NOT ORDERS_PRODUCTS INFO)
+ORDERS 
+1) Get Orders By User Id*** (GET: localhost:4001/orders/)
+Ex- Response
+    {}; 
 
 2) Create Order*** (POST: localhost:4001/orders/)
-Ex
-{
-    "totalPrice": 314.99, 
-    "products": [
-        {"productId": 1, "quantity": 4}, 
-        {"productId": 2, "quantity": 5}, 
-        {"productId": 3, "quantity": 6}
-    ]
-};
+Ex- Request Body
+    {
+        "totalPrice": 314.99, 
+        "products": [
+            {"productId": 1, "quantity": 4}, 
+            {"productId": 2, "quantity": 5}, 
+            {"productId": 3, "quantity": 6}
+        ]
+    };
 
-EDIT 3) Get Order By Order ID (Admin Only Route) (GET: localhost:4001/orders/:orderId) (CURRENTLY ONLY GETS ORDER INFO AND NOT ORDERS_PRODUCTS INFO)
+3) Get Order By Order Id (Admin Only Route) (GET: localhost:4001/orders/:orderId)
+Ex- Response
+    {};
 
-EDIT 4) Update Order (Admin Only Route) (PUT: localhost:4001/orders/:orderId) (CURRENTLY ONLY GETS ORDER INFO AND NOT ORDERS_PRODUCTS INFO)
-Ex
-{
-    "userId": 123,
-    "totalPrice": 314.99, 
-    "shipStatus": true
-};
+4) Update Order By Order Id (Admin Only Route) (PUT: localhost:4001/orders/:orderId)
+Ex- Request Body
+    {
+        "shipStatus": true
+    };
 
-EDIT 5) Delete Order (Admin Only Route) (DELETE: localhost:4001/orders/:orderId) (CURRENTLY ONLY DELETES ORDER INFO AND NOT ORDERS_PRODUCTS INFO)
+5) Delete Order (Admin Only Route) (DELETE: localhost:4001/orders/:orderId)

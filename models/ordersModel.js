@@ -1,16 +1,46 @@
 const db = require('../db/db');
 
 
-const getOrdersByUserId = (req, res, next) => {
+const getOrdersByUserId = async (req, res, next) => {
     const { userId } = req.body;
     //const userId = req.user.id;
 
-    db.query('SELECT * FROM orders WHERE user_id = $1;', [userId], (err, result) => {
-        if (err) {
-            return next(err)
-        }
-        res.status(200).send(result.rows)
-    })
+    try {
+        const ordersResult = await db.queryNoCB(`SELECT * FROM orders WHERE user_id = $1;`, [userId]);
+        
+        const userOrders = [];
+        
+        for (let i=0; i < orders.length; i++) {
+            const statement = `SELECT * 
+                        FROM orders 
+                        JOIN orders_products
+                        ON orders.id = orders_products.order_id
+                        WHERE orders.id = $1;`;
+
+            const result = await db.queryNoCB(statement, [ordersResult.rows[i].id]);
+                
+            let products = [];
+            result.rows.forEach(row => products.push({
+                productId: row.product_id, 
+                quantity: row.quantity})
+            );
+
+            let orderObject = {
+                orderId: result.rows[0].id,
+                userId: result.rows[0].user_id,
+                totalPrice: result.rows[0].totalPrice,
+                shipStatus: result.rows[0].ship_status,
+                products: products
+            };
+
+            userOrders.push(orderObject);
+        };
+        
+        res.status(200).json(userOrders);
+        
+    } catch(err) {
+        next(err);
+    };
 };
 
 
@@ -46,22 +76,46 @@ const createOrder = async (req, res, next) => {
 const getOrderById = (req, res, next) => {
     const orderId = Number(req.params.orderId);
 
-    db.query('SELECT * FROM orders WHERE id = $1', [orderId], (err, result) => {
-        if (err) {
-            return next(err)
+    const statement = `SELECT * 
+                        FROM orders 
+                        JOIN orders_products
+                        ON orders.id = orders_products.order_id
+                        WHERE orders.id = $1;`;
+
+    db.query(statement,
+        [orderId],
+        (err, result) => {
+            if (err) {
+                return next(err);
+            };
+
+            const products = [];
+            result.rows.forEach(row => products.push({
+                productId: row.product_id, 
+                quantity: row.quantity})
+            );
+
+            const orderObject = {
+                orderId: result.rows[0].id,
+                userId: result.rows[0].user_id,
+                totalPrice: result.rows[0].totalPrice,
+                shipStatus: result.rows[0].ship_status,
+                products: products
+            };
+
+            res.status(200).json(orderObject);
         }
-        res.status(200).send(result.rows[0]);
-    });
+    );
 };
 
 
 //(admin only)
 const updateOrder = (req, res, next) => {
     const orderId = Number(req.params.orderId);
-    const { userId, totalPrice, shipStatus } = req.body;
+    const { shipStatus } = req.body;
 
-    db.query(`ALTER TABLE orders SET user_id = $2, total_price = $3, ship_status = $4 WHERE id = $1;`, 
-            [orderId, userId, totalPrice, shipStatus], 
+    db.query(`ALTER TABLE orders SET ship_status = $2 WHERE id = $1;`, 
+            [orderId, shipStatus], 
             (err, result) => {
                 if (err) {
                     return next(err)
@@ -80,15 +134,21 @@ const deleteOrder = (req, res, next) => {
         if (err) {
             return next(err)
         }
+    }); 
+
+    db.query('DELETE FROM orders_products WHERE order_id = $1;', [orderId], (err, result) => {
+        if (err) {
+            return next(err)
+        }
         res.status(200).send(`Order with ID: ${orderId} was deleted`)
     }); 
 };
 
 
 module.exports = {
-    getOrderById,
     getOrdersByUserId,
     createOrder,
+    getOrderById,
     updateOrder,
     deleteOrder
 };
