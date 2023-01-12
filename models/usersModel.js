@@ -3,7 +3,9 @@ const bcrypt = require('bcrypt');
 
 
 const registerUser = async (req, res, next) => {
-    const {username, password, email, admin} = req.body;
+    const {username, password, email } = req.body;
+    const admin = req.body.admin || false;
+    
     const salt = await bcrypt.genSalt(10);
     const passwordHash = await bcrypt.hash(password, salt);
    

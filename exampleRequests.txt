@@ -20,8 +20,8 @@ USERS
     {
         "username": "testUsername",
         "password": "testPassword",
-        "email": "testemail@aol.com",
-        "admin": false
+        "email": "testemail@aol.com"
+        /* , "admin": true */
     };
 
 5) Update Username*** (PUT: localhost:4001/users/username)
