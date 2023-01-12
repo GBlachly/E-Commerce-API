@@ -6,7 +6,7 @@ const getAllProducts = (req, res, next) => {
         if (err) {
             return next(err)
         }
-        res.status(200).json( result.rows );
+        res.status(200).json({ products: result.rows });
     });
 };
 
@@ -18,7 +18,7 @@ const getProductByName = (req, res, next) => {
         if (err) {
             return next(err)
         }
-        res.status(200).json( result.rows );
+        res.status(200).json({ products: result.rows });
     });
 };
 
@@ -30,7 +30,7 @@ const getProductById = (req, res, next) => {
         if (err) {
             return next(err)
         }
-        res.status(200).json( result.rows[0] );
+        res.status(200).json({ products: result.rows[0] });
     });
 };
 
