@@ -471,3 +471,136 @@ paths:
           description: Default error sample response
       tags:
         - Example Tag
+
+components:
+  schemas:
+    Login:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+      xml:
+        name: Login
+    
+    Register:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+        email:
+          type: string
+      xml:
+        name: Register
+    
+    Username:
+      type: object
+      properties:
+        username:
+          type: string
+      xml:
+        name: Username
+    
+    Password:
+      type: object
+      properties:
+        password:
+          type: string
+      xml:
+        name: Password
+    
+    Product:
+      type: object
+      properties:
+        name:
+          type: string
+        price:
+          type: number
+        stock:
+          type: integer
+      xml:
+        name: Product
+    
+    CreateCart:
+      type: object
+      properties:
+        totalPrice:
+          type: number
+        products:
+          type: array
+          items: 
+            type: object
+            properties:
+              productId: 
+                type: integer
+              productName:
+                type: string
+              quantity: 
+                type: integer
+      xml:
+        name: CreateCart
+    
+    AddItem:
+      type: object
+      properties:
+        productId:
+          type: integer
+        productName:
+          type: string
+        quantity:
+          type: integer
+      xml:
+        name: AddItem
+    
+    DeleteItem:
+      type: object
+      properties:
+        productId:
+          type: integer
+      xml:
+        name: DeleteItem
+    
+    UpdateQuantity:
+      type: object
+      properties:
+        productId:
+          type: integer
+        quantity:
+          type: integer
+      xml:
+        name: UpdateQuantity
+    
+    Checkout:
+      type: object
+      properties:
+      
+      xml:
+        name: Checkout
+    
+    CreateOrder:
+      type: object
+      properties:
+        totalPrice:
+          type: number
+        products:
+          type: array
+          items: 
+            type: object
+            properties:
+              productId: 
+                type: integer
+              quantity: 
+                type: integer
+      xml:
+        name: CreateOrder
+    
+    UpdateOrder:
+      type: object
+      properties:
+        shipStatus:
+          type: boolean
+      xml:
+        name: UpdateOrder
