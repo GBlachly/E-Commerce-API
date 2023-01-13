@@ -1,0 +1,473 @@
+openapi: 3.0.1
+info:
+  title: E-Commerce API
+  version: 1.0.0
+  description: API for use with e-commerce site.
+paths:
+  /users/login:
+    summary: Log a user in or get the login page
+    get:
+      summary: ''
+      description: ''
+      operationId: ''
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - Example Tag
+    post:
+      summary: ''
+      description: ''
+      operationId: ''
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - Example Tag
+  /users/logout:
+    summary: Log out a user
+    get:
+      summary: ''
+      description: ''
+      operationId: ''
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - Example Tag
+  /users/register:
+    summary: Register a user
+    post:
+      summary: ''
+      description: ''
+      operationId: ''
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - Example Tag
+  /users/username:
+    summary: Change a user's username
+    put:
+      summary: ''
+      description: ''
+      operationId: ''
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - Example Tag
+  /users/password:
+    summary: Change a user's password
+    put:
+      summary: ''
+      description: ''
+      operationId: ''
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - Example Tag
+  /users/delete:
+    summary: Delete a user
+    delete:
+      summary: ''
+      description: ''
+      operationId: ''
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - Example Tag
+  /products/:
+    summary: Get all products or create a new product
+    get:
+      summary: ''
+      description: ''
+      operationId: ''
+      responses:
+        default:
+          description: Default error sample response
+          content:
+            application/json:
+              examples:
+                allProducts:
+                  value: >-
+                    {
+                      "products": [
+                        {
+                          "id": 1, 
+                          "name": "Item One", 
+                          "price": 3.99, 
+                          "stock": 4
+                        }, 
+                        {
+                          "id": 2, 
+                          "name": "Item Two", 
+                          "price": 4.99, 
+                          "stock": 5
+                        }, 
+                        {
+                          "id": 3, 
+                          "name": "Item Three", 
+                          "price": 5.99, 
+                          "stock": 6
+                        }
+                      ]
+                    };
+      tags:
+        - Example Tag
+    post:
+      summary: ''
+      description: ''
+      operationId: ''
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - Example Tag
+  /products/name/{productName}:
+    summary: Get products by name
+    get:
+      summary: ''
+      description: ''
+      operationId: ''
+      parameters:
+      - name: productName
+        in: path
+        description: 'The name of a product.'
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: Default error sample response
+          content:
+            application/json:
+              examples:
+                products:
+                  value: >-
+                    {
+                      "products": [
+                        {
+                          "id": 1, 
+                          "name": "Item One", 
+                          "price": 3.99, 
+                          "stock": 4
+                        }, 
+                        {
+                          "id": 2, 
+                          "name": "Item Two", 
+                          "price": 4.99, 
+                          "stock": 5
+                        }, 
+                        {
+                          "id": 3, 
+                          "name": "Item Three", 
+                          "price": 5.99, 
+                          "stock": 6
+                        }
+                      ]
+                    };
+      tags:
+        - Example Tag
+  /products/id/{productId}:
+    summary: Get, alter, or delete products by id
+    get:
+      summary: ''
+      description: ''
+      operationId: ''
+      parameters:
+      - name: productId
+        in: path
+        description: 'The id of a product'
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: Default error sample response
+          content:
+            application/json:
+              examples:
+                product:
+                  value: >-
+                     {
+                      "product": {
+                        "id": 1, 
+                        "name": "Item One", 
+                        "price": 3.99, 
+                        "stock": 4
+                      }
+                     };
+      tags:
+        - Example Tag
+    put:
+      summary: ''
+      description: ''
+      operationId: ''
+      parameters:
+      - name: productId
+        in: path
+        description: 'The id of a product'
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - Example Tag
+    delete:
+      summary: ''
+      description: ''
+      operationId: ''
+      parameters:
+      - name: productId
+        in: path
+        description: 'The id of a product'
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - Example Tag
+  /carts/:
+    summary: Get, create, or delete the cart of a signed-in user
+    get:
+      summary: ''
+      description: ''
+      operationId: ''
+      responses:
+        default:
+          description: Default error sample response
+          content:
+            application/json:
+              examples:
+                cart:
+                  value: >-
+                    {
+                      "cartId": 123,
+                      "userId": 234,
+                      "totalPrice": 199.99,
+                      "products": [
+                        {
+                          "productId": 1, 
+                          "productName": "Item One", 
+                          "quantity": 4
+                        },
+                        {
+                          "productId": 2, 
+                          "productName": "Item Two", 
+                          "quantity": 5
+                        }, 
+                        {
+                          "productId": 3, 
+                          "productName": "Item Three", 
+                          "quantity": 6
+                        }
+                      ]
+                    };
+      tags:
+        - Example Tag
+    post:
+      summary: ''
+      description: ''
+      operationId: ''
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - Example Tag
+    delete:
+      summary: ''
+      description: ''
+      operationId: ''
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - Example Tag
+  /carts/addItem:
+    summary: Add an item to a cart
+    post:
+      summary: ''
+      description: ''
+      operationId: ''
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - Example Tag
+  /carts/deleteItem:
+    summary: Removes an item from a cart
+    delete:
+      summary: ''
+      description: ''
+      operationId: ''
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - Example Tag
+  /carts/updateQuantity:
+    summary: Change the quantity of an item in a cart
+    post:
+      summary: ''
+      description: ''
+      operationId: ''
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - Example Tag
+  /carts/checkout:
+    summary: Create a new order from the items in a users cart
+    post:
+      summary: ''
+      description: ''
+      operationId: ''
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - Example Tag
+  /orders/:
+    summary: Get all orders or create a new order using a user's id
+    get:
+      summary: ''
+      description: ''
+      operationId: ''
+      responses:
+        default:
+          description: Default error sample response
+          content:
+            application/json:
+              examples:
+                userOrders:
+                  value: >-
+                    {
+                      "userOrders": [
+                        {
+                          "orderId": 123,
+                          "userId": 234,
+                          "totalPrice": 199.99,
+                          "shipStatus": false,
+                          "products": [
+                              {"productId": 1, "quantity": 4}, 
+                              {"productId": 2, "quantity": 5}, 
+                              {"productId": 3, "quantity": 6}
+                          ]
+                        }, 
+                        {
+                          "orderId": 456,
+                          "userId": 234,
+                          "totalPrice": 199.99,
+                          "shipStatus": false,
+                          "products": [
+                              {"productId": 1, "quantity": 4}, 
+                              {"productId": 2, "quantity": 5}, 
+                              {"productId": 3, "quantity": 6}
+                          ]
+                        }, 
+                        {
+                          "orderId": 789,
+                          "userId": 234,
+                          "totalPrice": 199.99,
+                          "shipStatus": false,
+                          "products": [
+                              {"productId": 1, "quantity": 4}, 
+                              {"productId": 2, "quantity": 5}, 
+                              {"productId": 3, "quantity": 6}
+                          ]
+                        }
+                      ]
+                    }; 
+      tags:
+        - Example Tag
+    post:
+      summary: ''
+      description: ''
+      operationId: ''
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - Example Tag
+  /orders/{orderId}:
+    summary: Get, update, or delete an order by order id
+    get:
+      summary: ''
+      description: ''
+      operationId: ''
+      parameters:
+      - name: orderId
+        in: path
+        description: 'The id of an order'
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: Default error sample response
+          content:
+            application/json:
+              examples:
+                order:
+                  value: >-
+                    {
+                      "orderId": 123,
+                      "userId": 234,
+                      "totalPrice": 199.99,
+                      "shipStatus": false,
+                      "products": [
+                        {
+                          "productId": 1, 
+                          "quantity": 4
+                        }, 
+                        {
+                          "productId": 2, 
+                          "quantity": 5
+                        }, 
+                        {
+                          "productId": 3, 
+                          "quantity": 6
+                        }
+                      ]
+                    };
+      tags:
+        - Example Tag
+    put:
+      summary: ''
+      description: ''
+      operationId: ''
+      parameters:
+      - name: orderId
+        in: path
+        description: 'The id of an order'
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - Example Tag
+    delete:
+      summary: ''
+      description: ''
+      operationId: ''
+      parameters:
+      - name: orderId
+        in: path
+        description: 'The id of an order'
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: Default error sample response
+      tags:
+        - Example Tag
