@@ -19,6 +19,12 @@ paths:
       summary: ''
       description: ''
       operationId: ''
+      requestBody:
+        description: Object with username and password
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Login'
       responses:
         default:
           description: Default error sample response
@@ -41,6 +47,12 @@ paths:
       summary: ''
       description: ''
       operationId: ''
+      requestBody:
+        description: Object with new username and password
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Register'
       responses:
         default:
           description: Default error sample response
@@ -52,6 +64,12 @@ paths:
       summary: ''
       description: ''
       operationId: ''
+      requestBody:
+        description: Object with new username
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Username'
       responses:
         default:
           description: Default error sample response
@@ -63,6 +81,12 @@ paths:
       summary: ''
       description: ''
       operationId: ''
+      requestBody:
+        description: Object with new password
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Password'
       responses:
         default:
           description: Default error sample response
@@ -121,6 +145,12 @@ paths:
       summary: ''
       description: ''
       operationId: ''
+      requestBody:
+        description: Object with productName, price, and stock
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
       responses:
         default:
           description: Default error sample response
@@ -213,6 +243,12 @@ paths:
         required: true
         schema:
           type: string
+      requestBody:
+        description: Object with productName, price, and stock
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Product'
       responses:
         default:
           description: Default error sample response
@@ -276,6 +312,12 @@ paths:
       summary: ''
       description: ''
       operationId: ''
+      requestBody:
+        description: Object with totalPrice and a products array (contains objects with productId, productName, quantity)
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCart'
       responses:
         default:
           description: Default error sample response
@@ -296,6 +338,12 @@ paths:
       summary: ''
       description: ''
       operationId: ''
+      requestBody:
+        description: Object with productId, productName, and quantity
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddItem'
       responses:
         default:
           description: Default error sample response
@@ -303,10 +351,16 @@ paths:
         - Example Tag
   /carts/deleteItem:
     summary: Removes an item from a cart
-    delete:
+    put:
       summary: ''
       description: ''
       operationId: ''
+      requestBody:
+        description: Object with productId
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteItem'
       responses:
         default:
           description: Default error sample response
@@ -318,6 +372,12 @@ paths:
       summary: ''
       description: ''
       operationId: ''
+      requestBody:
+        description: Object with productId and quantity
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateQuantity'
       responses:
         default:
           description: Default error sample response
@@ -329,6 +389,12 @@ paths:
       summary: ''
       description: ''
       operationId: ''
+      requestBody:
+        description: Object with checkout information
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Checkout'
       responses:
         default:
           description: Default error sample response
@@ -391,6 +457,12 @@ paths:
       summary: ''
       description: ''
       operationId: ''
+      requestBody:
+        description: Object with totalPrice and a products array (contains objects with productId and quantity)
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrder'
       responses:
         default:
           description: Default error sample response
@@ -450,6 +522,12 @@ paths:
         required: true
         schema:
           type: string
+      requestBody:
+        description: Object with shipStatus (true or false)
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateOrder'
       responses:
         default:
           description: Default error sample response
@@ -472,8 +550,10 @@ paths:
       tags:
         - Example Tag
 
+
 components:
   schemas:
+    
     Login:
       type: object
       properties:

@@ -118,7 +118,7 @@ Ex- Request Body
         ]
     };
 
-EDIT 3) Add Item To Cart*** (POST: localhost:4001/carts/addItem)
+3) Add Item To Cart*** (POST: localhost:4001/carts/addItem)
 Ex- Request Body
     {
         "productId": 1,
@@ -126,13 +126,13 @@ Ex- Request Body
         "quantity": 4
     };
 
-EDIT 4) Delete Item From Cart*** (DELETE: localhost:4001/carts/deleteItem)
+4) Delete Item From Cart*** (PUT: localhost:4001/carts/deleteItem)
 Ex- Request Body
     {
         "productId": 1
     };
 
-EDIT 5) Update Cart Item Quantity*** (PUT: localhost:4001/carts/updateQuantity)
+5) Update Cart Item Quantity*** (PUT: localhost:4001/carts/updateQuantity)
 Ex- Request Body
     {
         "productId": 1,
