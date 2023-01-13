@@ -14,7 +14,7 @@ paths:
         default:
           description: Default error sample response
       tags:
-        - Example Tag
+        - Users
     post:
       summary: ''
       description: ''
@@ -29,7 +29,7 @@ paths:
         default:
           description: Default error sample response
       tags:
-        - Example Tag
+        - Users
   /users/logout:
     summary: Log out a user
     get:
@@ -40,7 +40,7 @@ paths:
         default:
           description: Default error sample response
       tags:
-        - Example Tag
+        - Users
   /users/register:
     summary: Register a user
     post:
@@ -57,7 +57,7 @@ paths:
         default:
           description: Default error sample response
       tags:
-        - Example Tag
+        - Users
   /users/username:
     summary: Change a user's username
     put:
@@ -74,7 +74,7 @@ paths:
         default:
           description: Default error sample response
       tags:
-        - Example Tag
+        - Users
   /users/password:
     summary: Change a user's password
     put:
@@ -91,7 +91,7 @@ paths:
         default:
           description: Default error sample response
       tags:
-        - Example Tag
+        - Users
   /users/delete:
     summary: Delete a user
     delete:
@@ -102,7 +102,7 @@ paths:
         default:
           description: Default error sample response
       tags:
-        - Example Tag
+        - Users
   /products/:
     summary: Get all products or create a new product
     get:
@@ -111,7 +111,7 @@ paths:
       operationId: ''
       responses:
         default:
-          description: Default error sample response
+          description: JSON object with products array of products objects
           content:
             application/json:
               examples:
@@ -140,7 +140,7 @@ paths:
                       ]
                     };
       tags:
-        - Example Tag
+        - Products
     post:
       summary: ''
       description: ''
@@ -155,7 +155,7 @@ paths:
         default:
           description: Default error sample response
       tags:
-        - Example Tag
+        - Products
   /products/name/{productName}:
     summary: Get products by name
     get:
@@ -171,7 +171,7 @@ paths:
           type: string
       responses:
         default:
-          description: Default error sample response
+          description: JSON object with products array of products objects
           content:
             application/json:
               examples:
@@ -200,7 +200,7 @@ paths:
                       ]
                     };
       tags:
-        - Example Tag
+        - Products
   /products/id/{productId}:
     summary: Get, alter, or delete products by id
     get:
@@ -216,7 +216,7 @@ paths:
           type: string
       responses:
         default:
-          description: Default error sample response
+          description: JSON object with product object
           content:
             application/json:
               examples:
@@ -231,7 +231,7 @@ paths:
                       }
                      };
       tags:
-        - Example Tag
+        - Products
     put:
       summary: ''
       description: ''
@@ -253,7 +253,7 @@ paths:
         default:
           description: Default error sample response
       tags:
-        - Example Tag
+        - Products
     delete:
       summary: ''
       description: ''
@@ -269,7 +269,7 @@ paths:
         default:
           description: Default error sample response
       tags:
-        - Example Tag
+        - Products
   /carts/:
     summary: Get, create, or delete the cart of a signed-in user
     get:
@@ -278,7 +278,7 @@ paths:
       operationId: ''
       responses:
         default:
-          description: Default error sample response
+          description: JSON object with cartId, userId, totalPrice and products array of products objects
           content:
             application/json:
               examples:
@@ -307,7 +307,7 @@ paths:
                       ]
                     };
       tags:
-        - Example Tag
+        - Carts
     post:
       summary: ''
       description: ''
@@ -322,7 +322,7 @@ paths:
         default:
           description: Default error sample response
       tags:
-        - Example Tag
+        - Carts
     delete:
       summary: ''
       description: ''
@@ -331,7 +331,7 @@ paths:
         default:
           description: Default error sample response
       tags:
-        - Example Tag
+        - Carts
   /carts/addItem:
     summary: Add an item to a cart
     post:
@@ -348,7 +348,7 @@ paths:
         default:
           description: Default error sample response
       tags:
-        - Example Tag
+        - Carts
   /carts/deleteItem:
     summary: Removes an item from a cart
     put:
@@ -365,7 +365,7 @@ paths:
         default:
           description: Default error sample response
       tags:
-        - Example Tag
+        - Carts
   /carts/updateQuantity:
     summary: Change the quantity of an item in a cart
     post:
@@ -382,7 +382,7 @@ paths:
         default:
           description: Default error sample response
       tags:
-        - Example Tag
+        - Carts
   /carts/checkout:
     summary: Create a new order from the items in a users cart
     post:
@@ -399,7 +399,8 @@ paths:
         default:
           description: Default error sample response
       tags:
-        - Example Tag
+        - Checkout
+        - Carts
   /orders/:
     summary: Get all orders or create a new order using a user's id
     get:
@@ -408,7 +409,7 @@ paths:
       operationId: ''
       responses:
         default:
-          description: Default error sample response
+          description: JSON object with userOrders array of orders objects
           content:
             application/json:
               examples:
@@ -452,7 +453,7 @@ paths:
                       ]
                     }; 
       tags:
-        - Example Tag
+        - Orders
     post:
       summary: ''
       description: ''
@@ -467,7 +468,7 @@ paths:
         default:
           description: Default error sample response
       tags:
-        - Example Tag
+        - Orders
   /orders/{orderId}:
     summary: Get, update, or delete an order by order id
     get:
@@ -483,7 +484,7 @@ paths:
           type: string
       responses:
         default:
-          description: Default error sample response
+          description: JSON object with orderId, userId, totalPrice, shipStatus, and products array of products objects
           content:
             application/json:
               examples:
@@ -510,7 +511,7 @@ paths:
                       ]
                     };
       tags:
-        - Example Tag
+        - Orders
     put:
       summary: ''
       description: ''
@@ -532,7 +533,7 @@ paths:
         default:
           description: Default error sample response
       tags:
-        - Example Tag
+        - Orders
     delete:
       summary: ''
       description: ''
@@ -548,7 +549,7 @@ paths:
         default:
           description: Default error sample response
       tags:
-        - Example Tag
+        - Orders
 
 
 components:
@@ -684,3 +685,4 @@ components:
           type: boolean
       xml:
         name: UpdateOrder
+        
