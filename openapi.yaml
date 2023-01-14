@@ -11,8 +11,10 @@ paths:
       description: ''
       operationId: 'get_login_page'
       responses:
-        default:
-          description: Default error sample response
+        '500':
+          description: Default error response
+        '200':
+          description: Success
       tags:
         - Users
     post:
@@ -26,8 +28,10 @@ paths:
             schema:
               $ref: '#/components/schemas/Login'
       responses:
-        default:
-          description: Default error sample response
+        '500':
+          description: Default error response
+        '200':
+          description: Success
       tags:
         - Users
   /users/logout:
@@ -37,8 +41,10 @@ paths:
       description: 'logout_user'
       operationId: ''
       responses:
-        default:
-          description: Default error sample response
+        '500':
+          description: Default error response
+        '200':
+          description: Success
       tags:
         - Users
   /users/register:
@@ -54,8 +60,10 @@ paths:
             schema:
               $ref: '#/components/schemas/Register'
       responses:
-        default:
-          description: Default error sample response
+        '500':
+          description: Default error response
+        '200':
+          description: Success
       tags:
         - Users
   /users/username:
@@ -71,8 +79,10 @@ paths:
             schema:
               $ref: '#/components/schemas/Username'
       responses:
-        default:
-          description: Default error sample response
+        '500':
+          description: Default error response
+        '200':
+          description: Success
       tags:
         - Users
   /users/password:
@@ -88,8 +98,10 @@ paths:
             schema:
               $ref: '#/components/schemas/Password'
       responses:
-        default:
-          description: Default error sample response
+        '500':
+          description: Default error response
+        '200':
+          description: Success
       tags:
         - Users
   /users/delete:
@@ -99,8 +111,10 @@ paths:
       description: ''
       operationId: 'delete_user'
       responses:
-        default:
-          description: Default error sample response
+        '500':
+          description: Default error response
+        '200':
+          description: Success
       tags:
         - Users
   /products/:
@@ -110,8 +124,9 @@ paths:
       description: ''
       operationId: 'get_all_products'
       responses:
-        default:
-          description: JSON object with products array of products objects
+        '500':
+          description: Default error response
+        '200':
           content:
             application/json:
               examples:
@@ -139,6 +154,7 @@ paths:
                         }
                       ]
                     };
+          description: Success
       tags:
         - Products
     post:
@@ -152,8 +168,10 @@ paths:
             schema:
               $ref: '#/components/schemas/Product'
       responses:
-        default:
-          description: Default error sample response
+        '500':
+          description: Default error response
+        '200':
+          description: Success
       tags:
         - Products
   /products/name/{productName}:
@@ -170,8 +188,9 @@ paths:
         schema:
           type: string
       responses:
-        default:
-          description: JSON object with products array of products objects
+        '500':
+          description: Default error response
+        '200':
           content:
             application/json:
               examples:
@@ -199,12 +218,13 @@ paths:
                         }
                       ]
                     };
+          description: Success          
       tags:
         - Products
   /products/id/{productId}:
     summary: Get, alter, or delete products by id
     get:
-      summary: 'Get Product By ID'
+      summary: 'Get Product By Id'
       description: ''
       operationId: 'get_product_by_id'
       parameters:
@@ -215,8 +235,9 @@ paths:
         schema:
           type: string
       responses:
-        default:
-          description: JSON object with product object
+        '500':
+          description: Default error response
+        '200':
           content:
             application/json:
               examples:
@@ -230,6 +251,7 @@ paths:
                         "stock": 4
                       }
                      };
+          description: Success 
       tags:
         - Products
     put:
@@ -250,8 +272,10 @@ paths:
             schema:
               $ref: '#/components/schemas/Product'
       responses:
-        default:
-          description: Default error sample response
+        '500':
+          description: Default error response
+        '200':
+          description: Success
       tags:
         - Products
     delete:
@@ -266,8 +290,10 @@ paths:
         schema:
           type: string
       responses:
-        default:
-          description: Default error sample response
+        '500':
+          description: Default error response
+        '200':
+          description: Success
       tags:
         - Products
   /carts/:
@@ -277,8 +303,9 @@ paths:
       description: ''
       operationId: 'get_cart'
       responses:
-        default:
-          description: JSON object with cartId, userId, totalPrice and products array of products objects
+        '500':
+          description: Default error response
+        '200':
           content:
             application/json:
               examples:
@@ -306,6 +333,7 @@ paths:
                         }
                       ]
                     };
+          description: Success 
       tags:
         - Carts
     post:
@@ -319,8 +347,10 @@ paths:
             schema:
               $ref: '#/components/schemas/CreateCart'
       responses:
-        default:
-          description: Default error sample response
+        '500':
+          description: Default error response
+        '200':
+          description: Success
       tags:
         - Carts
     delete:
@@ -328,8 +358,10 @@ paths:
       description: ''
       operationId: 'delete_cart'
       responses:
-        default:
-          description: Default error sample response
+        '500':
+          description: Default error response
+        '200':
+          description: Success
       tags:
         - Carts
   /carts/addItem:
@@ -345,8 +377,10 @@ paths:
             schema:
               $ref: '#/components/schemas/AddItem'
       responses:
-        default:
-          description: Default error sample response
+        '500':
+          description: Default error response
+        '200':
+          description: Success
       tags:
         - Carts
   /carts/deleteItem:
@@ -362,8 +396,10 @@ paths:
             schema:
               $ref: '#/components/schemas/DeleteItem'
       responses:
-        default:
-          description: Default error sample response
+        '500':
+          description: Default error response
+        '200':
+          description: Success
       tags:
         - Carts
   /carts/updateQuantity:
@@ -379,8 +415,10 @@ paths:
             schema:
               $ref: '#/components/schemas/UpdateQuantity'
       responses:
-        default:
-          description: Default error sample response
+        '500':
+          description: Default error response
+        '200':
+          description: Success
       tags:
         - Carts
   /carts/checkout:
@@ -396,8 +434,10 @@ paths:
             schema:
               $ref: '#/components/schemas/Checkout'
       responses:
-        default:
-          description: Default error sample response
+        '500':
+          description: Default error response
+        '200':
+          description: Success
       tags:
         - Checkout
         - Carts
@@ -408,8 +448,9 @@ paths:
       description: ''
       operationId: 'get_user_orders'
       responses:
-        default:
-          description: JSON object with userOrders array of orders objects
+        '500':
+          description: Default error response
+        '200':
           content:
             application/json:
               examples:
@@ -451,7 +492,8 @@ paths:
                           ]
                         }
                       ]
-                    }; 
+                    };
+          description: Success 
       tags:
         - Orders
     post:
@@ -465,14 +507,16 @@ paths:
             schema:
               $ref: '#/components/schemas/CreateOrder'
       responses:
-        default:
-          description: Default error sample response
+        '500':
+          description: Default error response
+        '200':
+          description: Success
       tags:
         - Orders
   /orders/{orderId}:
     summary: Get, update, or delete an order by order id
     get:
-      summary: 'Get an Order by ID'
+      summary: 'Get an Order by Id'
       description: ''
       operationId: 'get_order_by_id'
       parameters:
@@ -483,8 +527,9 @@ paths:
         schema:
           type: string
       responses:
-        default:
-          description: JSON object with orderId, userId, totalPrice, shipStatus, and products array of products objects
+        '500':
+          description: Default error response
+        '200':
           content:
             application/json:
               examples:
@@ -510,6 +555,7 @@ paths:
                         }
                       ]
                     };
+          description: Success 
       tags:
         - Orders
     put:
@@ -530,8 +576,10 @@ paths:
             schema:
               $ref: '#/components/schemas/UpdateOrder'
       responses:
-        default:
-          description: Default error sample response
+        '500':
+          description: Default error response
+        '200':
+          description: Success
       tags:
         - Orders
     delete:
@@ -546,8 +594,10 @@ paths:
         schema:
           type: string
       responses:
-        default:
-          description: Default error sample response
+        '500':
+          description: Default error response
+        '200':
+          description: Success
       tags:
         - Orders
 
@@ -672,3 +722,4 @@ components:
           type: boolean
       xml:
         name: UpdateOrder
+        
