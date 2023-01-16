@@ -156,11 +156,63 @@ const deleteCart = async (req, res, next) => {
 };
 
 
-const checkout = (req, res, next) => {
+const checkout = async (req, res, next) => {
     const { userId } = req.body;
     //const userId = req.user.id;
+    
+    /*const {
+        firstName,
+        lastName,
+        cardNumber,
+        expirationDate,
+        securityCode,
+    } = req.body.paymentInfo; */
+
+    try {
+
+        const result1 = await db.queryNoCB('SELECT * FROM carts WHERE user_id = $1;', [userId]);
+        const cartId = result1.rows[0].id;
+        const totalPrice = result1.rows[0].total_price;
 
 
+        const statement2 = `SELECT * FROM carts_products WHERE cart_id = $1;`;
+        const result2 = await db.queryNoCB(statement2, [cartId]);
+
+
+        const products = [];
+        result2.rows.forEach((row) => {
+            let product = {
+                productId: row.product_id,
+                productName: row.product_name,
+                quantity: row.quantity
+            };
+            products.push(product);
+        });
+
+        
+        const statement3 = `INSERT INTO orders (user_id, total_price)
+                            VALUES ($1, $2)
+                            RETURNING *;`;
+        const result3 = await db.queryNoCB(statement3, [userId, totalPrice/*, paymentInfo */]);
+        const orderId = result3.rows[0].id;
+
+
+        const statement4 = `INSERT INTO orders_products(order_id, product_id, product_name, quantity)
+                            VALUES ($1, $2, $3, $4);`;
+        products.forEach((product) => {
+            db.queryNoCB(statement4, [orderId, product.productId, product.productName, product.quantity]);
+        });
+
+
+        res.status(200).send(`Payment received and order: ${orderId} created`);
+
+
+        db.queryNoCB('DELETE FROM carts_products WHERE cartId = $1;', [cartId]);
+        db.queryNoCB('DELETE FROM carts WHERE id = $1;', [cartId]);
+        
+    } catch(err) {
+        return next(err);
+    };
 };
 
 

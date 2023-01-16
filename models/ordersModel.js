@@ -22,6 +22,7 @@ const getOrdersByUserId = async (req, res, next) => {
             let products = [];
             result.rows.forEach(row => products.push({
                 productId: row.product_id, 
+                productName: row.product_name,
                 quantity: row.quantity})
             );
 
@@ -49,20 +50,20 @@ const createOrder = async (req, res, next) => {
     const { userId } = req.body;
     //const userId = req.user.id;
 
-    const { totalPrice, products /*, payment object*/ } = req.body;
+    const { totalPrice, products /*, paymentInfo*/ } = req.body;
     
     try {
         const statement1 = `INSERT INTO orders (user_id, total_price) 
                             VALUES ($1, $2) 
                             RETURNING *`;
-        const result = await db.queryNoCB(statement1, [userId, totalPrice]);
+        const result = await db.queryNoCB(statement1, [userId, totalPrice/*, paymentInfo*/]);
         const orderId = result.rows[0].id;
         
         /* HERE WE WANT TO ADD THE PRODUCTS AND THEIR QUANTITIES TO THE orders_products/ordered_items TABLE USING THE RETURNED orderID */
-        const statement2 = `INSERT INTO orders_products (order_id, product_id, quantity) 
-                            VALUES ($1, $2, $3)`;
+        const statement2 = `INSERT INTO orders_products (order_id, product_id, product_name, quantity) 
+                            VALUES ($1, $2, $3, $4)`;
         products.forEach((product) => {
-           db.queryNoCB(statement2, [orderId, product.productId, product.quantity]);
+           db.queryNoCB(statement2, [orderId, product.productId, product.productName, product.quantity]);
         }); 
 
         res.status(201).send(`Order ID is ${orderId}`);
@@ -93,6 +94,7 @@ const getOrderById = (req, res, next) => {
             const products = [];
             result.rows.forEach(row => products.push({
                 productId: row.product_id, 
+                productName: row.product_name,
                 quantity: row.quantity})
             );
 

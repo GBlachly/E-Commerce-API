@@ -464,9 +464,9 @@ paths:
                           "totalPrice": 199.99,
                           "shipStatus": false,
                           "products": [
-                              {"productId": 1, "quantity": 4}, 
-                              {"productId": 2, "quantity": 5}, 
-                              {"productId": 3, "quantity": 6}
+                              {"productId": 1, "productName": "Item One", "quantity": 4}, 
+                              {"productId": 2, "productName": "Item Two", "quantity": 5}, 
+                              {"productId": 3, "productName": "Item Three", "quantity": 6}
                           ]
                         }, 
                         {
@@ -475,9 +475,9 @@ paths:
                           "totalPrice": 199.99,
                           "shipStatus": false,
                           "products": [
-                              {"productId": 1, "quantity": 4}, 
-                              {"productId": 2, "quantity": 5}, 
-                              {"productId": 3, "quantity": 6}
+                              {"productId": 1, "productName": "Item One", "quantity": 4}, 
+                              {"productId": 2, "productName": "Item Two", "quantity": 5}, 
+                              {"productId": 3, "productName": "Item Three", "quantity": 6}
                           ]
                         }, 
                         {
@@ -486,9 +486,9 @@ paths:
                           "totalPrice": 199.99,
                           "shipStatus": false,
                           "products": [
-                              {"productId": 1, "quantity": 4}, 
-                              {"productId": 2, "quantity": 5}, 
-                              {"productId": 3, "quantity": 6}
+                              {"productId": 1, "productName": "Item One", "quantity": 4}, 
+                              {"productId": 2, "productName": "Item Two", "quantity": 5}, 
+                              {"productId": 3, "productName": "Item Three", "quantity": 6}
                           ]
                         }
                       ]
@@ -542,15 +542,18 @@ paths:
                       "shipStatus": false,
                       "products": [
                         {
-                          "productId": 1, 
+                          "productId": 1,
+                          "productName": "Item One",
                           "quantity": 4
                         }, 
                         {
-                          "productId": 2, 
+                          "productId": 2,
+                          "productName": "Item Two",
                           "quantity": 5
                         }, 
                         {
-                          "productId": 3, 
+                          "productId": 3,
+                          "productName": "Item Three",
                           "quantity": 6
                         }
                       ]
@@ -696,7 +699,19 @@ components:
     Checkout:
       type: object
       properties:
-      
+        paymentInfo:
+          type: object
+          properties:
+            firstName:
+              type: string
+            lastName:
+              type: string
+            cardNumber:
+              type: integer
+            expirationDate:
+              type: integer
+            securityCode:
+              type: integer
       xml:
         name: Checkout
     CreateOrder:
@@ -711,6 +726,8 @@ components:
             properties:
               productId: 
                 type: integer
+              productName:
+                type: string
               quantity: 
                 type: integer
       xml:
@@ -722,4 +739,3 @@ components:
           type: boolean
       xml:
         name: UpdateOrder
-        

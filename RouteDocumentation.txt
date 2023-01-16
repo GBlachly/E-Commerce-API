@@ -161,9 +161,9 @@ Ex- Response
                 "totalPrice": 199.99,
                 "shipStatus": false,
                 "products": [
-                    {"productId": 1, "quantity": 4}, 
-                    {"productId": 2, "quantity": 5}, 
-                    {"productId": 3, "quantity": 6},
+                    {"productId": 1, "productName": "Item One", "quantity": 4}, 
+                    {"productId": 2, "productName": "Item Two", "quantity": 5}, 
+                    {"productId": 3, "productName": "Item Three", "quantity": 6},
                     ...
                 ]
             }, 
@@ -173,9 +173,9 @@ Ex- Response
                 "totalPrice": 199.99,
                 "shipStatus": false,
                 "products": [
-                    {"productId": 1, "quantity": 4}, 
-                    {"productId": 2, "quantity": 5}, 
-                    {"productId": 3, "quantity": 6},
+                    {"productId": 1, "productName": "Item One", "quantity": 4}, 
+                    {"productId": 2, "productName": "Item Two", "quantity": 5}, 
+                    {"productId": 3, "productName": "Item Three", "quantity": 6},
                     ...
                 ]
             }, 
@@ -185,9 +185,9 @@ Ex- Response
                 "totalPrice": 199.99,
                 "shipStatus": false,
                 "products": [
-                    {"productId": 1, "quantity": 4}, 
-                    {"productId": 2, "quantity": 5}, 
-                    {"productId": 3, "quantity": 6},
+                    {"productId": 1, "productName": "Item One", "quantity": 4}, 
+                    {"productId": 2, "productName": "Item Two", "quantity": 5}, 
+                    {"productId": 3, "productName": "Item Three", "quantity": 6},
                     ...
                 ]
             },
@@ -200,9 +200,9 @@ Ex- Request Body
     {
         "totalPrice": 314.99, 
         "products": [
-            {"productId": 1, "quantity": 4}, 
-            {"productId": 2, "quantity": 5}, 
-            {"productId": 3, "quantity": 6},
+            {"productId": 1, "productName": "Item One", "quantity": 4}, 
+            {"productId": 2, "productName": "Item Two", "quantity": 5}, 
+            {"productId": 3, "productName": "Item Three", "quantity": 6},
             ...
         ]
     };
@@ -215,9 +215,9 @@ Ex- Response
         "totalPrice": 199.99,
         "shipStatus": false,
         "products": [
-            {"productId": 1, "quantity": 4}, 
-            {"productId": 2, "quantity": 5}, 
-            {"productId": 3, "quantity": 6},
+            {"productId": 1, "productName": "Item One", "quantity": 4}, 
+            {"productId": 2, "productName": "Item Two", "quantity": 5}, 
+            {"productId": 3, "productName": "Item Three", "quantity": 6},
             ...
         ]
     };
