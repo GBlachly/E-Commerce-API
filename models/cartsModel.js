@@ -197,7 +197,7 @@ const checkout = async (req, res, next) => {
         const orderId = result3.rows[0].id;
 
 
-        const statement4 = `INSERT INTO orders_products(order_id, product_id, product_name, quantity)
+        const statement4 = `INSERT INTO orders_products (order_id, product_id, product_name, quantity)
                             VALUES ($1, $2, $3, $4);`;
         products.forEach((product) => {
             db.queryNoCB(statement4, [orderId, product.productId, product.productName, product.quantity]);
@@ -207,7 +207,7 @@ const checkout = async (req, res, next) => {
         res.status(200).send(`Payment received and order: ${orderId} created`);
 
 
-        db.queryNoCB('DELETE FROM carts_products WHERE cartId = $1;', [cartId]);
+        db.queryNoCB('DELETE FROM carts_products WHERE cart_id = $1;', [cartId]);
         db.queryNoCB('DELETE FROM carts WHERE id = $1;', [cartId]);
         
     } catch(err) {
